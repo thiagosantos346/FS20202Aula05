@@ -12,26 +12,26 @@ public class ProfessorNegocio {
 		ProfessorDAO dao = new ProfessorDAO();
 		public Professor inserir(Professor professor) throws ProfessorExection {
 			this.validarProfessor(professor);
-			//dao.inserir(professor);
+			dao.inserir(professor);
 			return professor;
 		}
 		
 		public List<Professor> buscaTodos() throws ProfessorExection{
-			return null; //dao.buscaTodos();	
+			return dao.buscaTodos();	
 		}
 		
 		public Professor buscaPorId(Integer id) throws ProfessorExection {
 			
-			return null; //dao.buscaPorId(id);
+			return dao.buscaPorId(id);
 		}
 		
 		public Professor alterar(Professor professor) throws ProfessorExection {		
 			this.validarProfessor(professor);
-			return null; //dao.alterar(professor);
+			return dao.alterar(professor);
 		}
 		
 		public void excluir(Integer id) throws ProfessorExection {
-			//dao.excluir(id);
+			dao.excluir(id);
 		}
 		
 		private void validarProfessor(Professor professor) throws ProfessorExection {

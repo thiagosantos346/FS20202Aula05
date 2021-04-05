@@ -2,9 +2,7 @@ package br.ufg.inf.ctrl;
 
 import java.util.List;
 
-import br.ufg.inf.ctrl.exception.DisciplinaExection;
 import br.ufg.inf.ctrl.exception.OfertaExection;
-import br.ufg.inf.ctrl.exception.ProfessorExection;
 import br.ufg.inf.ctrl.negocio.OfertaNegocio;
 import br.ufg.inf.model.entities.Oferta;
 
@@ -28,13 +26,7 @@ public class OfertaCtrl {
 		try {
 			ofertas = negocio.buscaTodos();
 		} catch (OfertaExection e) {
-			System.out.println("Erro tentar buscar as ofertas cadastrados.");
-			System.out.println(e.getMessage());
-		} catch (DisciplinaExection e) {
-			System.out.println("Erro tentar buscar as ofertas cadastrados.");
-			System.out.println(e.getMessage());
-		} catch (ProfessorExection e) {
-			System.out.println("Erro tentar buscar as ofertas cadastrados.");
+			System.out.println("Erro tentar buscar as ofertas cadastradas.");
 			System.out.println(e.getMessage());
 		}
 		return ofertas;
@@ -45,12 +37,6 @@ public class OfertaCtrl {
 		try {
 			oferta = negocio.buscaPorId(id);
 		} catch (OfertaExection e) {
-			System.out.println("Erro tentar buscar oferta do ID: " + id + ".");
-			System.out.println(e.getMessage());
-		} catch (DisciplinaExection e) {
-			System.out.println("Erro tentar buscar oferta do ID: " + id + ".");
-			System.out.println(e.getMessage());
-		} catch (ProfessorExection e) {
 			System.out.println("Erro tentar buscar oferta do ID: " + id + ".");
 			System.out.println(e.getMessage());
 		}

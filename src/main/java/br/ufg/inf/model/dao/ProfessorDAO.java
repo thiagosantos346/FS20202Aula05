@@ -1,106 +1,58 @@
 package br.ufg.inf.model.dao;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import br.ufg.inf.ctrl.exception.ProfessorExection;
+import br.ufg.inf.model.entities.Professor;
+
 public class ProfessorDAO {
 
-	/*public Professor inserir(Professor professor) throws ProfessorExection {
-		PreparedStatement st = null;
-		try {
-			Connection conn = DB.getConnection();
-			st = (PreparedStatement) conn.prepareStatement(
-					"INSERT INTO tb_professor " + "(escolaridade, id_pessoa)" + "VALUES (?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
-			st.setInt(1, professor.getEscolaridade().getId());
-			st.setInt(2, professor.getPessoa().getIdPessoa());
-			int rowsAffected = st.executeUpdate();
-			System.out.println("Linhas alteradas: " + rowsAffected);
-			if (rowsAffected > 0) {
+	EntityManager em = DaoFactory.getEntityManager();
 
-				ResultSet rs = st.getGeneratedKeys();
-				if (rs.next()) {
-					int id = rs.getInt(1);
-					professor.setIdProfessor(id);
-				}
-			}
-		} catch (SQLException e) {
-			throw new ProfessorExection(e.getMessage());
-		}
+	// CREATE
+	public Professor inserir(Professor professor) throws ProfessorExection {
+
+		this.em.getTransaction().begin();
+		this.em.persist(professor);
+		this.em.getTransaction().commit();
+
 		return professor;
 	}
 
+	// READ
 	public List<Professor> buscaTodos() throws ProfessorExection {
-		ResultSet rs = null;
-		PreparedStatement st = null;
-		List<Professor> professors = new ArrayList<Professor>();
-		try {
-			Connection conn = DB.getConnection();
-			String query = "SELECT id_professor, escolaridade, id_pessoa FROM tb_professor ORDER BY id_professor ";
-			st = conn.prepareStatement(query);
-			rs = st.executeQuery();
-			while (rs.next()) {
-				professors.add(this.vo(rs));
-			}
-		} catch (SQLException e) {
-			throw new ProfessorExection(e.getMessage());
-		}
-		return professors;
-	}
-
-	private Professor vo(ResultSet rs) throws SQLException {
-		Professor professor = new Professor();
-		professor.setIdProfessor(rs.getInt("id_professor"));
-		professor.setEscolaridade(Escolaridade.get(rs.getInt("escolaridade")));
-		professor.setPessoa(new Pessoa(rs.getInt("id_pessoa"), null, null, null));
-		return professor;
+		return this.em.createQuery("from Professor", Professor.class).getResultList();
 	}
 
 	public Professor buscaPorId(Integer id) throws ProfessorExection {
-		Professor professor = null;
-		ResultSet rs = null;
-		PreparedStatement st = null;
-		try {
-			Connection conn = DB.getConnection();
-			String query = "SELECT id_professor, escolaridade, id_pessoa FROM tb_professor WHERE id_professor = ? ";
-			st = conn.prepareStatement(query);
-			st.setInt(1, id);
-			rs = st.executeQuery();
-			if (rs.next()) {
-				professor = this.vo(rs);
-			}
-		} catch (SQLException e) {
-			throw new ProfessorExection(e.getMessage());
-		}
-		return professor;
+		return this.em.find(Professor.class, id);
 	}
+
+	// UPDATE
 
 	public Professor alterar(Professor professor) throws ProfessorExection {
-		PreparedStatement st = null;
-		try {
-			Connection conn = DB.getConnection();
-			String query = "UPDATE tb_professor SET escolaridade = ?, id_pessoa = ? WHERE id_professor = ? ; ";
-			st = (PreparedStatement) conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			st.setInt(1, professor.getEscolaridade().getId());
-			st.setInt(2, professor.getPessoa().getIdPessoa());
-			st.setInt(3, professor.getIdProfessor());
-			int rowsAffected = st.executeUpdate();
-			System.out.println("Linhas alteradas: " + rowsAffected);
-		} catch (SQLException e) {
-			throw new ProfessorExection(e.getMessage());
-		}
+
+		this.em.getTransaction().begin();
+		this.em.persist(professor);
+		this.em.getTransaction().commit();
+
 		return professor;
 	}
 
-	public void excluir(Integer id) throws ProfessorExection {
-		PreparedStatement st = null;
-		try {
-			Connection conn = DB.getConnection();
-			String query = " DELETE FROM tb_professor WHERE id_professor = ? ; ";
-			st = (PreparedStatement) conn.prepareStatement(query);
-			st.setInt(1, id);
-			int rowsAffected = st.executeUpdate();
-			System.out.println("Linhas alteradas: " + rowsAffected);
+	// DELETE
 
-		} catch (SQLException e) {
-			throw new ProfessorExection(e.getMessage());
-		}
-	}*/
+	public void excluir(Integer id) throws ProfessorExection {
+		this.em.remove(this.buscaPorId(id));
+	}
+	
+	
+	public List<Professor> buscarPorNome(String str){
+		String sql = "from Professor d where d.nmProfessor like :str";
+		TypedQuery<Professor> query = em.createQuery(sql, Professor.class);
+		query.setParameter("str", "%"+str+"%");
+		return query.getResultList();
+	}
 }

@@ -2,13 +2,13 @@ package br.ufg.inf.model.enums;
 
 public enum Dia {
 
-	DOMINGO(1, "Domingo"),
-	SEGUNDA(2, "Segunda-feira"),
-	TERCA(3, "Terça-feira"),
-	QUARTA(4, "Quarta-feira"),
-	QUINTA(5, "Quinta-feira"),
-	SEXTA(6, "Sexta-feira"),
-	SABADO(7, "Sábado"),;
+	DOMINGO(0, "Domingo"),
+	SEGUNDA(1, "Segunda-feira"),
+	TERCA(2, "Terça-feira"),
+	QUARTA(3, "Quarta-feira"),
+	QUINTA(4, "Quinta-feira"),
+	SEXTA(5, "Sexta-feira"),
+	SABADO(6, "Sábado"),;
 
 	Dia(int id, String value) {
 		this.id = id;

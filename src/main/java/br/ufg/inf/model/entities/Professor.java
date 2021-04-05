@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +33,7 @@ public class Professor implements Serializable{
 	@JoinColumn(name="id_pessoa")
 	private Pessoa pessoa;
 	
+	@Enumerated(EnumType.ORDINAL)
 	private Escolaridade escolaridade;
 
 	

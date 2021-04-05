@@ -2,11 +2,11 @@ package br.ufg.inf.model.enums;
 
 public enum Escolaridade {
 	
-	MEDIO(1, "Médio"),
-	GRADUACAO(2, "Graduação"),
-	ESPECIALIZACAO(3, "Especialização"),
-	MESTRADO(4, "Mestrado"),
-	DOUTORADO(5, "Doutorado");
+	MEDIO(0, "Médio"),
+	GRADUACAO(1, "Graduação"),
+	ESPECIALIZACAO(2, "Especialização"),
+	MESTRADO(3, "Mestrado"),
+	DOUTORADO(4, "Doutorado");
 		
 	private int id;
 	private String value;

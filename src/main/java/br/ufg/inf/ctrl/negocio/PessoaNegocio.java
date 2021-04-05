@@ -9,37 +9,28 @@ import br.ufg.inf.model.entities.Pessoa;
 
 public class PessoaNegocio {
 
-
 		PessoaDAO dao = new PessoaDAO();
 	
 		public Pessoa inserir(Pessoa pessoa) throws PessoaExection {
 			this.validarPessoa(pessoa);
-			//dao.inserir(pessoa);
-			return pessoa;
+			return dao.inserir(pessoa);
 		}
 		
-		// READ
 		public List<Pessoa> buscaTodos() throws PessoaExection{
-			return null; //dao.buscaTodos();	
+			return dao.buscaTodos();	
 		}
 		
 		public Pessoa buscaPorId(Integer id) throws PessoaExection {
-			
-			return null; // dao.buscaPorId(id);
+			return dao.buscaPorId(id);
 		}
-		
-		
-		// UPDATE
-		
+
 		public Pessoa alterar(Pessoa pessoa) throws PessoaExection {		
 			this.validarPessoa(pessoa);
-			return null; // dao.alterar(pessoa);
+			return dao.alterar(pessoa);
 		}
-		
-		// DELETE
-		
+
 		public void excluir(Integer id) throws PessoaExection {
-			//dao.excluir(id);
+			dao.excluir(id);
 		}
 		
 		private void validarPessoa(Pessoa pessoa) throws PessoaExection {
@@ -56,7 +47,7 @@ public class PessoaNegocio {
 			Calendar calNascimento = Calendar.getInstance();
 			calNascimento.setTime(pessoa.getDtNascimento());
 			
-			if (calHoje.after(calNascimento)) {
+			if (calHoje.before(calNascimento)) {
 				throw new PessoaExection("Data de Nascimento deve ser maior que hoje.");
 			}
 
