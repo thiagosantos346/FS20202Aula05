@@ -20,10 +20,9 @@ import br.ufg.inf.model.entities.Professor;
 import br.ufg.inf.model.enums.Dia;
 import br.ufg.inf.model.enums.Escolaridade;
 
-public class Aplication {
+public class App {
 
-	
-	
+  
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Executando!!!");
@@ -40,41 +39,11 @@ public class Aplication {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			/*Oferta ofe1 = new Oferta(null, 
-						professorCtrl.buscaPorId(1), 
-						disciplinaCtrl.buscaPorId(2), 
-						simpleDateFormat.parse("02/02/2021"), 
-						simpleDateFormat.parse("15/06/2021"), 
-						Dia.SEGUNDA, 
-						"08:00");
-			
-			Oferta ofe2 = new Oferta(null, 
-					professorCtrl.buscaPorId(2), 
-					disciplinaCtrl.buscaPorId(3), 
-					simpleDateFormat.parse("02/02/2021"), 
-					simpleDateFormat.parse("15/06/2021"), 
-					Dia.QUARTA, 
-					"14:00");
-			
-			Oferta ofe3 = new Oferta(null, 
-					professorCtrl.buscaPorId(3), 
-					disciplinaCtrl.buscaPorId(4), 
-					simpleDateFormat.parse("02/02/2021"), 
-					simpleDateFormat.parse("15/06/2021"), 
-					Dia.SEXTA, 
-					"19:00");
-			
-			ctrl.inserir(ofe1);
-			ctrl.inserir(ofe2);
-			ctrl.inserir(ofe3);
-			*/
-			
+		
 			Oferta oferta = ctrl.buscaPorId(1);
 			oferta.setDtInicio(simpleDateFormat.parse("22/02/2021"));
 			
 			ctrl.alterar(oferta);
-			
-			
 			
 			for(Oferta o : ctrl.buscaTodos()) {
 				System.out.println(o);
@@ -82,7 +51,6 @@ public class Aplication {
 			
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -91,22 +59,11 @@ public class Aplication {
 		
 		ProfessorCtrl ctrl = new ProfessorCtrl();
 		PessoaCtrl pessoaCtrl = new PessoaCtrl();
-		
-		/*Professor prof1 = new Professor(null, pessoaCtrl.buscaPorId(1), Escolaridade.MESTRADO);
-		Professor prof2 = new Professor(null, pessoaCtrl.buscaPorId(2), Escolaridade.MEDIO);
-		Professor prof3 = new Professor(null, pessoaCtrl.buscaPorId(3), Escolaridade.DOUTORADO);
-		
-		ctrl.inserir(prof1);
-		ctrl.inserir(prof2);
-		ctrl.inserir(prof3);
-		*/
-		
 		Professor prof1 = ctrl.buscaPorId(1);
 		
 		prof1.setEscolaridade(Escolaridade.GRADUACAO);
 		ctrl.alterar(prof1);
-		
-		
+	
 	}
 	
 	
@@ -117,27 +74,9 @@ public class Aplication {
 		
 		PessoaCtrl ctrl = new PessoaCtrl();
 		try {
-			
-			//Pessoa pes1 = new Pessoa(null, "Luiz", 12345678901l, simpleDateFormat.parse("01-01-1990"));
-			//ctrl.inserir(pes1);
-	
-			//Pessoa pes2 = new Pessoa(null, "Fulano", 11111111111l, simpleDateFormat.parse("01-01-1990"));
-			//ctrl.inserir(pes2);
-	
-			//Pessoa pes3 = new Pessoa(null, "Beltrano", 22222222222l, simpleDateFormat.parse("01-01-1990"));
-			//ctrl.inserir(pes3);
-	
-			//Pessoa pes4 = new Pessoa(null, "Cicrano", 33333333333l, simpleDateFormat.parse("01-01-1990"));
-			//ctrl.inserir(pes4);
-	
-			
 			Pessoa pes1 = ctrl.buscaPorId(2);
-			
 			pes1.setDtNascimento(simpleDateFormat.parse("01-01-1990"));
-
-		
 			ctrl.alterar(pes1);
-			
 			Pessoa pes2 = ctrl.buscaPorId(2);
 			pes2.setDtNascimento(simpleDateFormat.parse("01-04-2000"));
 			ctrl.alterar(pes2);
@@ -151,7 +90,6 @@ public class Aplication {
 			ctrl.alterar(pes4);
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -163,10 +101,7 @@ public class Aplication {
 		
 		DisciplinaCtrl ctrl = new DisciplinaCtrl();
 		Disciplina disciplina = new Disciplina(null, "Banco de Dados", 64);
-		
-		//ctrl.inserir(disciplina);
 		disciplina.setNmDisciplina(disciplina.getNmDisciplina()+" - Alterada");
-		//ctrl.alterar(disciplina);
 		System.out.println(ctrl.buscaPorId(3));
 		for(Disciplina d : ctrl.buscaTodos()) {
 			System.out.println(d);
@@ -176,38 +111,16 @@ public class Aplication {
 			System.out.println(d);
 		}
 	}
-	
-	
+
 	public void testeJPA() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("aula-jpa");
 		EntityManager em = emf.createEntityManager();
 		
 		Disciplina disc1 = new Disciplina(null, "FullStack", 64);
-		Disciplina disc2 = new Disciplina(null, "Matemática", 88);
+		Disciplina disc2 = new Disciplina(null, "Matemï¿½tica", 88);
 		Disciplina disc3 = new Disciplina(null, "Java", 30);
 		Disciplina disc4 = new Disciplina(null, "TypeScript", 90);
-		//System.out.println("-------------------------");
-		//System.out.println(disc1);
-		//System.out.println(disc2);
-		//System.out.println(disc3);
-		//System.out.println(disc4);
-		//System.out.println("-------------------------");	
-		//em.getTransaction().begin();
-		//em.persist(disc1);
-		//em.persist(disc2);
-		//em.persist(disc3);
-		//em.persist(disc4);
-		//em.getTransaction().commit();
-		
-		//System.out.println("-------------------------");
-		//System.out.println(disc1);
-		//System.out.println(disc2);
-		//System.out.println(disc3);
-		//System.out.println(disc4);
-		//System.out.println("-------------------------");
-		//System.out.println("Acabou!");
-		
-		
+	
 		TypedQuery<Disciplina> query =  em.createQuery("from Disciplina", Disciplina.class);
 		List<Disciplina> disciplinas = query.getResultList();
 		
@@ -253,14 +166,8 @@ public class Aplication {
 		System.out.println("----------------------------");
 		
 		Disciplina excluir = em.find(Disciplina.class, 1);
-		System.out.println(excluir);
-	//	em.getTransaction().begin();
-	//	em.remove(excluir);
-	//	em.getTransaction().commit();
-		
-		
+		System.out.println(excluir);		
 		
 	}
-	
-
+  
 }

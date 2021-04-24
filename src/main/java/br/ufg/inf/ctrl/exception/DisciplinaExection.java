@@ -7,4 +7,5 @@ public class DisciplinaExection extends Exception {
 	public DisciplinaExection(String msg) {
 		super(msg);
 	}
+	
 }

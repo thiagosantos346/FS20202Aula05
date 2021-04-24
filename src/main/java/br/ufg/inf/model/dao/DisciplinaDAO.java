@@ -32,7 +32,6 @@ public class DisciplinaDAO {
 	}
 
 	// UPDATE
-
 	public Disciplina alterar(Disciplina disciplina) throws DisciplinaExection {
 
 		this.em.getTransaction().begin();
