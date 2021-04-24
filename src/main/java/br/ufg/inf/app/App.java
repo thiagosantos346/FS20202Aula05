@@ -168,6 +168,6 @@ public class App {
 		Disciplina excluir = em.find(Disciplina.class, 1);
 		System.out.println(excluir);		
 		
-	}mvn in
+	}
   
 }
